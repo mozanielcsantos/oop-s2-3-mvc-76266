@@ -1,0 +1,17 @@
+@model VgcCollege.Web.Entities.Exam
+
+<h1>Create Exam</h1>
+
+<form asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="CourseId"></label>
+        <select asp-for="CourseId" asp-items="ViewBag.Courses" class="form-control"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Date"></label>
+        <input asp-for="Date" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>

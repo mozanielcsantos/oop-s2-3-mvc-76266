@@ -1,0 +1,38 @@
+@model IEnumerable<VgcCollege.Web.Entities.Assignment>
+
+<h1 class="mb-4">Assignments</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add Assignment</a>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        @if (!Model.Any())
+        {
+            <p>No assignments found.</p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Course</th>
+                        <th>Branch</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td>@a.Title</td>
+                        <td>@a.Course?.Name</td>
+                        <td>@a.Course?.Branch?.Name</td>
+                        <td>@a.DueDate.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

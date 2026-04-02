@@ -1,0 +1,31 @@
+@model IEnumerable<VgcCollege.Web.Entities.ExamResult>
+
+<h1 class="mb-4">Exam Results</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add Result</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Exam</th>
+            <th>Course</th>
+            <th>Branch</th>
+            <th>Student</th>
+            <th>Score</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>@r.Exam?.Title</td>
+            <td>@r.Exam?.Course?.Name</td>
+            <td>@r.Exam?.Course?.Branch?.Name</td>
+            <td>@r.StudentProfile?.Name</td>
+            <td>@r.Score</td>
+            <td>@r.Grade</td>
+        </tr>
+    }
+    </tbody>
+</table>

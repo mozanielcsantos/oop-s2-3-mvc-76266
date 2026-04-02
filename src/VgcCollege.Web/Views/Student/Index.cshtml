@@ -1,0 +1,122 @@
+@model VgcCollege.Web.ViewModels.StudentDashboardViewModel
+
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<h1 class="mb-4">Student Dashboard</h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h4>@Model.StudentName</h4>
+        <p class="mb-1"><strong>Student Number:</strong> @Model.StudentNumber</p>
+        <p class="mb-0"><strong>Email:</strong> @Model.Email</p>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="mb-3">My Courses</h5>
+
+        @if (Model.Courses.Count == 0)
+        {
+            <p>No course enrolments found.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Branch</th>
+                            <th>Status</th>
+                            <th>Enrol Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Courses)
+                    {
+                        <tr>
+                            <td>@item.CourseName</td>
+                            <td>@item.BranchName</td>
+                            <td>@item.Status</td>
+                            <td>@item.EnrolDate.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="mb-3">Assignment Results</h5>
+
+        @if (Model.AssignmentResults.Count == 0)
+        {
+            <p>No assignment results found.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Assignment</th>
+                            <th>Score</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.AssignmentResults)
+                    {
+                        <tr>
+                            <td>@item.AssignmentTitle</td>
+                            <td>@item.Score</td>
+                            <td>@item.Feedback</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="mb-3">Released Exam Results</h5>
+
+        @if (Model.ReleasedExamResults.Count == 0)
+        {
+            <p>No released exam results available.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Exam</th>
+                            <th>Score</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.ReleasedExamResults)
+                    {
+                        <tr>
+                            <td>@item.ExamTitle</td>
+                            <td>@item.Score</td>
+                            <td>@item.Grade</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

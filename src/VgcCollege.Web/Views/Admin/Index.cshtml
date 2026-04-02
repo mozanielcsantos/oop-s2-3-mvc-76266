@@ -1,0 +1,74 @@
+@model VgcCollege.Web.ViewModels.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Administrator Dashboard";
+}
+
+<h1 class="mb-4">Administrator Dashboard</h1>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Total Branches</h5>
+                <p class="display-6">@Model.TotalBranches</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Total Courses</h5>
+                <p class="display-6">@Model.TotalCourses</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Total Students</h5>
+                <p class="display-6">@Model.TotalStudents</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Total Faculty</h5>
+                <p class="display-6">@Model.TotalFaculty</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Total Enrolments</h5>
+                <p class="display-6">@Model.TotalEnrolments</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Total Exams</h5>
+                <p class="display-6">@Model.TotalExams</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4 class="mb-3">Management</h4>
+        <div class="d-flex flex-wrap gap-2">
+            <a asp-controller="Branches" asp-action="Index" class="btn btn-primary">Manage Branches</a>
+            <a asp-controller="Courses" asp-action="Index" class="btn btn-primary">Manage Courses</a>
+            <a asp-controller="Enrolments" asp-action="Index" class="btn btn-primary">Manage Enrolments</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">VGC College Management System</h1>
+    <p class="lead">Multi-branch student, faculty, enrolment, attendance, assignment, and exam management system.</p>
+</div>
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <div class="row g-4">
+        @if (User.IsInRole("Administrator"))
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Administrator Dashboard</h3>
+                        <p class="card-text">Manage branches, courses, users, enrolments, and overall academic records.</p>
+                        <a asp-controller="Admin" asp-action="Index" class="btn btn-primary">Open Admin Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (User.IsInRole("Faculty"))
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Faculty Dashboard</h3>
+                        <p class="card-text">View your assigned courses and the students enrolled in them.</p>
+                        <a asp-controller="Faculty" asp-action="Index" class="btn btn-primary">Open Faculty Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (User.IsInRole("Student"))
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Student Dashboard</h3>
+                        <p class="card-text">View your courses, assignment results, and released exam results.</p>
+                        <a asp-controller="Student" asp-action="Index" class="btn btn-primary">Open Student Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h3 class="mb-3">Login to continue</h3>
+                    <p class="mb-4">Use one of the seeded accounts to test Administrator, Faculty, or Student access.</p>
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Go to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

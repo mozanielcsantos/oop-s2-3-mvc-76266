@@ -1,0 +1,25 @@
+@model IEnumerable<VgcCollege.Web.Entities.Exam>
+
+<h1 class="mb-4">Exams</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add Exam</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Branch</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var exam in Model)
+    {
+        <tr>
+            <td>@exam.Course?.Name</td>
+            <td>@exam.Course?.Branch?.Name</td>
+            <td>@exam.Date.ToShortDateString()</td>
+        </tr>
+    }
+    </tbody>
+</table>

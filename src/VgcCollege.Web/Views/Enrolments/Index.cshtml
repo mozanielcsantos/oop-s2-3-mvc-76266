@@ -1,0 +1,51 @@
+@model IEnumerable<VgcCollege.Web.Entities.CourseEnrolment>
+
+@{
+    ViewData["Title"] = "Enrolments";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Enrolments</h1>
+    <a asp-action="Create" class="btn btn-primary">Add Enrolment</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        @if (!Model.Any())
+        {
+            <p class="mb-0">No enrolments found.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Course</th>
+                            <th>Branch</th>
+                            <th>Status</th>
+                            <th>Enrol Date</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var enrolment in Model)
+                    {
+                        <tr>
+                            <td>@enrolment.StudentProfile?.Name</td>
+                            <td>@enrolment.Course?.Name</td>
+                            <td>@enrolment.Course?.Branch?.Name</td>
+                            <td>@enrolment.Status</td>
+                            <td>@enrolment.EnrolDate.ToString("dd/MM/yyyy")</td>
+                            <td class="text-end">
+                                <a asp-action="Delete" asp-route-id="@enrolment.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

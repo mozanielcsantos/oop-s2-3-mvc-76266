@@ -1,0 +1,56 @@
+@model IEnumerable<VgcCollege.Web.Entities.AttendanceRecord>
+
+@{
+    ViewData["Title"] = "Attendance";
+    var enrolment = ViewBag.Enrolment as VgcCollege.Web.Entities.CourseEnrolment;
+}
+
+<h1 class="mb-4">Attendance Records</h1>
+
+@if (enrolment != null)
+{
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h4 class="mb-2">@enrolment.StudentProfile?.Name</h4>
+            <p class="mb-1"><strong>Course:</strong> @enrolment.Course?.Name</p>
+            <p class="mb-1"><strong>Branch:</strong> @enrolment.Course?.Branch?.Name</p>
+            <p class="mb-0"><strong>Status:</strong> @enrolment.Status</p>
+        </div>
+    </div>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Records</h2>
+    <a asp-action="Create" asp-route-enrolmentId="@enrolment?.Id" class="btn btn-primary">Add Attendance Record</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        @if (!Model.Any())
+        {
+            <p class="mb-0">No attendance records found.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Session Date</th>
+                            <th>Present</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var record in Model)
+                    {
+                        <tr>
+                            <td>@record.SessionDate.ToString("dd/MM/yyyy")</td>
+                            <td>@(record.Present ? "Present" : "Absent")</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

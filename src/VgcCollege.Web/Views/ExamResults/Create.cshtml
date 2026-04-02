@@ -1,0 +1,22 @@
+@model VgcCollege.Web.Entities.ExamResult
+
+<h1>Create Exam Result</h1>
+
+<form asp-action="Create">
+    <div class="mb-3">
+        <label>Exam</label>
+        <select asp-for="ExamId" asp-items="ViewBag.Exams" class="form-control"></select>
+    </div>
+
+    <div class="mb-3">
+        <label>Student</label>
+        <select asp-for="StudentProfileId" asp-items="ViewBag.Students" class="form-control"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Score"></label>
+        <input asp-for="Score" class="form-control" />
+    </div>
+
+    <button class="btn btn-success">Save</button>
+</form>

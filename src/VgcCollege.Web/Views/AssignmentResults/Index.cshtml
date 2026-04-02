@@ -1,0 +1,49 @@
+@model IEnumerable<VgcCollege.Web.Entities.AssignmentResult>
+
+@{
+    ViewData["Title"] = "Assignment Results";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Assignment Results</h1>
+    <a asp-action="Create" class="btn btn-primary">Add Result</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        @if (!Model.Any())
+        {
+            <p class="mb-0">No assignment results found.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Assignment</th>
+                            <th>Student</th>
+                            <th>Course</th>
+                            <th>Branch</th>
+                            <th>Score</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var result in Model)
+                    {
+                        <tr>
+                            <td>@result.Assignment?.Title</td>
+                            <td>@result.StudentProfile?.Name</td>
+                            <td>@result.Assignment?.Course?.Name</td>
+                            <td>@result.Assignment?.Course?.Branch?.Name</td>
+                            <td>@result.Score</td>
+                            <td>@result.Feedback</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

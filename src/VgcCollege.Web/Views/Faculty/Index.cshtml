@@ -1,0 +1,49 @@
+@model VgcCollege.Web.ViewModels.FacultyDashboardViewModel
+
+@{
+    ViewData["Title"] = "Faculty Dashboard";
+}
+
+<h1 class="mb-4">Faculty Dashboard</h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h4>@Model.FacultyName</h4>
+        <p class="mb-0">Assigned courses overview</p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="mb-3">My Courses</h5>
+
+        @if (Model.Courses.Count == 0)
+        {
+            <p>No courses assigned.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Branch</th>
+                            <th>Students</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Courses)
+                    {
+                        <tr>
+                            <td>@item.CourseName</td>
+                            <td>@item.BranchName</td>
+                            <td>@item.StudentCount</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
